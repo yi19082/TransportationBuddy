@@ -1,0 +1,24 @@
+<div class="container">
+  <h2>Vehicles</h2>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Vehicle Number</th>
+        <th>Vehicle ID</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @vehicles.each do |vehicle| %>
+        <tr data-link="<%= vehicle_path(vehicle) %>">
+          <td><%= vehicle.vehicle_number %></td>
+          <td><%= vehicle.vehicle_id %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+
+<script>
+
+</script>
