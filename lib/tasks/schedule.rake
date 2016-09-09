@@ -30,5 +30,27 @@ namespace :septa do
       Station.create(station_id: id, station_name: name)
     end
 
-	end
+  end
+
+  task :update_station_location => :environment do
+    Station.all.each do |station|
+      print "#{station.station_name}\n"
+      s_name = if station.station_name.include?('station')
+                 station.station_name + " PA"
+               else
+                 station.station_name + " station PA"
+               end
+
+      # print "http://maps.googleapis.com/maps/api/geocode/json?address=#{s_name}\n"
+      response = RestClient.get("http://maps.googleapis.com/maps/api/geocode/json?address=#{s_name}")
+      response = JSON.parse(response.body)
+      # binding.pry
+
+      station.update(full_address: response.try(:[], 'results').try(:[], 0).try(:[], 'formatted_address'),
+                     lat: response.try(:[], 'results').try(:[], 0).try(:[], 'geometry').try(:[], 'location').try(:[], 'lat'),
+                     lon: response.try(:[], 'results').try(:[], 0).try(:[], 'geometry').try(:[], 'location').try(:[], 'lng'))
+      sleep(1)
+
+    end
+  end
 end
