@@ -19,4 +19,16 @@ namespace :septa do
       end
     end
   end
+
+  desc "get latest stations"
+  task :update_stations => :environment do
+    require 'csv'
+    response = RestClient.get('http://www3.septa.org/hackathon/Arrivals/station_id_name.csv')
+    response = CSV.parse(response.body)
+    response.shift
+    response.each do |id, name|
+      Station.create(station_id: id, station_name: name)
+    end
+
+	end
 end

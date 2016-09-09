@@ -5,6 +5,7 @@ gem 'rest-client'
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 gem 'dotenv-rails', :groups => [:development, :test]
+gem 'rspec-rails', '~> 3.5', :groups => [:development, :test]
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
