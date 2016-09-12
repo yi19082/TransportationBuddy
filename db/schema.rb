@@ -11,7 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160908031832) do
+ActiveRecord::Schema.define(version: 20160912024444) do
+
+  create_table "routes", force: :cascade do |t|
+    t.string   "number",     limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
 
   create_table "travel_infos", force: :cascade do |t|
     t.string   "direction",   limit: 255
@@ -34,7 +40,10 @@ ActiveRecord::Schema.define(version: 20160908031832) do
     t.integer  "block_id",       limit: 4
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+    t.integer  "route_id",       limit: 4
   end
+
+  add_index "vehicles", ["route_id"], name: "index_vehicles_on_route_id", using: :btree
 
   add_foreign_key "travel_infos", "vehicles"
 end
