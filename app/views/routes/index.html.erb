@@ -1,19 +1,46 @@
 <div class="container">
-  <h2>Routes</h2>
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>Route Number</th>
-        <th>Destination</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @routes.each do |route| %>
-        <tr data-link="<%= route_path(route) %>">
-          <td><%= route.number %></td>
-          <td><%= route.dest %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <div class="container">
+    <h2>Routes</h2>
+    <ul class="nav nav-tabs">
+      <li class="active"><a data-toggle="tab" href="#regional_rails">Regional Rails</a></li>
+      <li><a data-toggle="tab" href="#buses_and_trolleys">Buses and Trolleys</a></li>
+    </ul>
+
+    <div class="tab-content">
+      <div id="regional_rails" class="tab-pane fade in active">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Source</th>
+              <th>Destination</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @routes.regional_rails.each do |route| %>
+              <tr data-link="<%= route_path(route) %>">
+                <td><%= route.source %></td>
+                <td><%= route.dest %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <div id="buses_and_trolleys" class="tab-pane fade">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Route Number</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @routes.buses_and_trolleys.each do |route| %>
+              <tr data-link="<%= route_path(route) %>">
+                <td><%= route.number %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>
