@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
+  resources :routes
   resources :vehicles
-  root 'vehicles#index'
+  root 'routes#index'
   #resources :travel_infos
   
   # The priority is based upon order of creation: first created -> highest priority.
