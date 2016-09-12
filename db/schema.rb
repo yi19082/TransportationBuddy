@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160908031832) do
+ActiveRecord::Schema.define(version: 20160909174244) do
+
+  create_table "stations", force: :cascade do |t|
+    t.string   "station_id",   limit: 255
+    t.string   "station_name", limit: 255
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.string   "full_address", limit: 255
+    t.float    "lat",          limit: 24
+    t.float    "lon",          limit: 24
+  end
 
   create_table "travel_infos", force: :cascade do |t|
     t.string   "direction",   limit: 255
