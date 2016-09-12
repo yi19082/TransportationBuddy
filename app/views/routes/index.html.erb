@@ -1,0 +1,17 @@
+<div class="container">
+  <h2>Routes</h2>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Route Number</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @routes.each do |route| %>
+        <tr data-link="<%= route_path(route) %>">
+          <td><%= route.number %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
