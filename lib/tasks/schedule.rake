@@ -4,9 +4,10 @@ namespace :septa do
     response = RestClient.get('http://www3.septa.org/hackathon/TransitViewAll/')  
     result = JSON.parse(response.body)
     result.first.last.each do |vehicle_data|
-      vehicle_data.each do |vehicle_number, real_time_data|
+      vehicle_data.each do |route_number, real_time_data|
       	real_time_data.each do |datum|
-      	  vehicle = Vehicle.where(vehicle_number: vehicle_number, vehicle_id: datum['VehicleID']).first_or_create
+          route = Route.where(number: route_number).first_or_create
+      	  vehicle = Vehicle.where(vehicle_id: datum['VehicleID'], route_id: route.id).first_or_create
       	  travel_info = vehicle.travel_infos.new
       	  travel_info['lat'] = datum['lat']
       	  travel_info['lng'] = datum['lng']
