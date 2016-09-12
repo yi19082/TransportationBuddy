@@ -4,12 +4,14 @@
     <thead>
       <tr>
         <th>Route Number</th>
+        <th>Destination</th>
       </tr>
     </thead>
     <tbody>
       <% @routes.each do |route| %>
         <tr data-link="<%= route_path(route) %>">
           <td><%= route.number %></td>
+          <td><%= route.dest %></td>
         </tr>
       <% end %>
     </tbody>
