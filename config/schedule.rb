@@ -21,6 +21,5 @@
 
 
 every 1.minute do
-  rake 'RAILS_ENV=development septa_buses_and_trolleys:update_real_time'
-  rake 'RAILS_ENV=development septa_regional_rails:update_real_time'
+  rake 'RAILS_ENV=development septa:update_real_time'
 end
