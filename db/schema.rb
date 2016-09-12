@@ -11,15 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160912033658) do
-
-  create_table "routes", force: :cascade do |t|
-    t.string   "number",     limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.string   "source",     limit: 255
-    t.string   "dest",       limit: 255
-  end
+ActiveRecord::Schema.define(version: 20160908031832) do
 
   create_table "stations", force: :cascade do |t|
     t.string   "station_id",   limit: 255
@@ -32,20 +24,15 @@ ActiveRecord::Schema.define(version: 20160912033658) do
   end
 
   create_table "travel_infos", force: :cascade do |t|
-    t.string   "direction",    limit: 255
-    t.string   "destination",  limit: 255
-    t.float    "lat",          limit: 24
-    t.float    "lng",          limit: 24
-    t.integer  "offset",       limit: 4
-    t.integer  "offset_sec",   limit: 4
-    t.integer  "vehicle_id",   limit: 4
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-    t.string   "service",      limit: 255
-    t.string   "track",        limit: 255
-    t.string   "track_change", limit: 255
-    t.string   "next_stop",    limit: 255
-    t.integer  "late_by",      limit: 4
+    t.string   "direction",   limit: 255
+    t.string   "destination", limit: 255
+    t.float    "lat",         limit: 24
+    t.float    "lng",         limit: 24
+    t.integer  "offset",      limit: 4
+    t.integer  "offset_sec",  limit: 4
+    t.integer  "vehicle_id",  limit: 4
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   add_index "travel_infos", ["vehicle_id"], name: "index_travel_infos_on_vehicle_id", using: :btree
@@ -57,10 +44,7 @@ ActiveRecord::Schema.define(version: 20160912033658) do
     t.integer  "block_id",       limit: 4
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
-    t.integer  "route_id",       limit: 4
   end
-
-  add_index "vehicles", ["route_id"], name: "index_vehicles_on_route_id", using: :btree
 
   add_foreign_key "travel_infos", "vehicles"
 end
